@@ -31,39 +31,56 @@ Please check out [Effective Datatables 3.x](https://github.com/code-and-effect/e
 
 # Contents
 
-* [Getting Started](#getting-started)
-* [Quick Start](#quick-start)
-* [Usage](#usage)
-* [DSL](#dsl)
-  * [attributes](#attributes)
-  * [collection](#collection)
-  * [datatable](#datatable)
-    * [col](#col)
-    * [val](#val)
-    * [bulk_actions_col](#bulk_actions_col)
-    * [actions_col](#actions_col)
-    * [length](#length)
-    * [order](#order)
-    * [reorder](#reorder)
-    * [aggregate](#aggregate)
-  * [filters](#filters)
-    * [scope](#scope)
-    * [filter](#filter)
-  * [bulk_actions](#bulk_actions)
-    * [bulk_action](#bulk_action)
-    * [bulk_action](#bulk_action_divider)
-    * [bulk_download](#bulk_download)
-    * [bulk_action_content](#bulk_action_content)
-  * [charts](#charts)
-  * [Extras](#extras)
-  * [Advanced Search and Sort](#advanced-search-and-sort)
-* [Addtional Functionality](#additional-functionality)
-  * [Checking for Empty collection](#checking-for-empty-collection)
-  * [Override javascript options](#override-javascript-options)
-  * [Get access to the raw results](#get-access-to-the-raw-results)
-  * [Authorization](#authorization)
-* [License](#license)
-* [Contributing](#contributing)
+- [Effective DataTables](#effective-datatables)
+  - [Live Demo](#live-demo)
+  - [effective_datatables 4.0](#effective_datatables-40)
+- [Contents](#contents)
+- [Getting Started](#getting-started)
+- [Quick Start](#quick-start)
+  - [The Model](#the-model)
+  - [The Controller](#the-controller)
+  - [The View](#the-view)
+- [Usage](#usage)
+  - [The Model](#the-model-1)
+  - [The Controller](#the-controller-1)
+  - [The View](#the-view-1)
+- [DSL](#dsl)
+  - [attributes](#attributes)
+  - [collection](#collection)
+  - [datatable](#datatable)
+    - [col](#col)
+    - [val](#val)
+    - [bulk_actions_col](#bulk_actions_col)
+    - [actions_col](#actions_col)
+    - [length](#length)
+    - [order](#order)
+    - [reorder](#reorder)
+    - [aggregate](#aggregate)
+  - [filters](#filters)
+    - [scope](#scope)
+    - [filter](#filter)
+  - [bulk_actions](#bulk_actions)
+    - [bulk_action](#bulk_action)
+    - [bulk_action_divider](#bulk_action_divider)
+    - [bulk_download](#bulk_download)
+    - [bulk_action_content](#bulk_action_content)
+  - [charts](#charts)
+  - [Extras](#extras)
+    - [simple](#simple)
+    - [index](#index)
+  - [Advanced Search and Sort](#advanced-search-and-sort)
+    - [With ActiveRecord collection](#with-activerecord-collection)
+    - [With Array collection](#with-array-collection)
+    - [Default search collection](#default-search-collection)
+  - [Dynamic Column Count](#dynamic-column-count)
+- [Additional Functionality](#additional-functionality)
+  - [Checking for Empty collection](#checking-for-empty-collection)
+  - [Override javascript options](#override-javascript-options)
+  - [Get access to the raw results](#get-access-to-the-raw-results)
+  - [Render outside of view](#render-outside-of-view)
+  - [Authorization](#authorization)
+- [License](#license)
+- [Contributing](#contributing)
 
 # Getting Started
 
@@ -929,6 +946,15 @@ or all together
 All options passed to `chart` are used to initialize the chart javascript.
 
 By default, the only package that is loaded is `corechart`, see the `config/initializers/effective_datatables.rb` file to add more packages.
+
+```javascript
+  window.aroundDrawChart = function(data,options,chart){
+    chart.draw(
+      google.visualization.arrayToDataTable(data), 
+      options)
+    )
+  };
+```
 
 ## Extras
 

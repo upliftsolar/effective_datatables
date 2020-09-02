@@ -24,7 +24,10 @@ renderCharts = ->
     options = $chart.data('options') || {}
 
     chart = new google.visualization[type](document.getElementById($chart.attr('id')))
-    chart.draw(google.visualization.arrayToDataTable(data), options)
+    if typeof(aroundDrawChart) == undefined
+      chart.draw(google.visualization.arrayToDataTable(data), options)
+    else
+      aroundDrawChart(data,options,chart, (modified_data, modified_options)-> chart.draw(google.visualization.arrayToDataTable(modified_data), modified_options))
 
 $ -> initializeCharts()
 $(document).on 'page:change', -> initializeCharts()
